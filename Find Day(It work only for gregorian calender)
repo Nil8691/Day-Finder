@@ -1,0 +1,140 @@
+Program:
+#include<conio.h>
+#include<stdio.h>
+int Yearcode(int c);
+int Monthcode(int b);
+int Centurycode(int c);
+int leapyearcode(int c);
+int Calculation(int k, int g,int b, int h, int l);
+void Day(int d,int z);
+void main()
+          {
+             int a,b,c,d,o,p,s,z;
+             clrscr();
+             printf("Enter Your Birth Date\n");
+             scanf("%d%d%d",&a,&b,&c);
+             if (c>=1752)
+                 {
+                   o=Yearcode(c);
+                   p=Monthcode(b);
+                   s=Centurycode(c);
+                   z=leapyearcode(c);
+                   if (a==29&&z==0)
+                      {
+                       printf("Given Date are Invalid");
+                       getch();
+                       exit();
+                      }
+                d=Calculation(o,p,s,a,z);
+                d=d+1;
+                Day(d,z);
+                }
+           else
+            printf("The Enter Date are not Under Gregorian Calender");
+           getch();
+        }
+int Yearcode(int c)
+       {
+                      int i,j;
+                      i=c%100;
+                      j=(i+(i/4))%7;
+                      return j;
+        }
+int Monthcode(int b)
+        {
+           switch(b)
+              {
+               case 1:
+               case 10:
+                 b=0;
+                 break;
+               case 2:
+               case 3:
+               case 11:
+                 b=3;
+                 break;
+               case 4:
+               case 7:
+                 b=6;
+                 break;
+               case 5:
+                 b=1;
+                 break;
+               case 6:
+                 b=4;
+                 break;
+               case 8:
+                 b=2;
+                 break;
+               case 9:
+               case 12:
+                 b=5;
+                 break;
+         }
+return b;
+}
+int Centurycode(int c)
+{
+int a;
+if (c>=1700&&c<1800)
+a= 4;
+if (c>=1800&&c<1900)
+a= 2;
+if (c>=1900&&c<2000)
+a= 0;
+if (c>=2000&&c<2100)
+a= 6;
+if (c>=2100&&c<2200)
+a= 4;
+if (c>=2200&&c<2300)
+a= 2;
+if(c>=2300&&c<2400)
+a= 0;
+return a;
+}
+int leapyearcode(int c)
+{
+if ((c%4)==0)
+return 1;
+else
+return 0;
+}
+int Calculation(int o, int p,int s, int a, int z)
+{
+int x,q;
+x=o+p+s+a-z;
+q=x%7;
+return q;
+}
+void Day(int d,int z)
+{
+if (z==1)
+d=d+1;
+switch(d)
+{
+case 1:
+printf("is on that Day Sunday");
+break;
+case 2:
+printf(" Monday");
+break;
+case 3:
+printf("Tuesday");
+break;
+case 4:
+printf("Wednesday");
+break;
+case 5:
+printf("Thusday");
+break;
+case 6:
+printf("Friday");
+break;
+case 7:
+printf("Saturday");
+break;
+default:
+printf("INVALID");
+break;
+}
+}
